@@ -32,10 +32,6 @@ class Sighting < ActiveRecord::Base
     geo_point = lat && lon ? {geo_point: {lat: lat, lon: lon}} : {}
     { 
       id: id,
-      geo_point: {
-        lat: lat,
-        lon: lon
-      },
       email: email,
       description: description,
       species: species,
@@ -56,9 +52,11 @@ class Sighting < ActiveRecord::Base
       from (page - 1) * PER_PAGE
       size PER_PAGE
 
-      filter 'and', filters.map{|key, value|
-        {term: {key => value}}
-      }
+      unless filters.blank?
+        filter 'and', filters.map{|key, value|
+          {term: {key => value}}
+        }
+      end
 
       if location
         sort do
@@ -82,9 +80,11 @@ class Sighting < ActiveRecord::Base
       from (page - 1) * PER_PAGE
       size PER_PAGE
 
-      filter 'or', filters.map{|key, value|
-        {term: {key => value}}
-      }
+      unless filters.blank?
+        filter 'or', filters.map{|key, value|
+          {term: {key => value}}
+        }
+      end
 
       if sighting.lat and sighting.lon
         sort do

@@ -53,9 +53,11 @@ class Report < ActiveRecord::Base
       from (page - 1) * PER_PAGE
       size PER_PAGE
 
-      filter 'and', filters.map{|key, value|
-        {term: {key => value}}
-      }
+      unless filters.blank?
+        filter 'and', filters.map{|key, value|
+          {term: {key => value}}
+        }
+      end
 
       if location
         sort do
@@ -79,9 +81,11 @@ class Report < ActiveRecord::Base
       from (page - 1) * PER_PAGE
       size PER_PAGE
 
-      filter 'or', filters.map{|key, value|
-        {term: {key => value}}
-      }
+      unless filters.blank?
+        filter 'or', filters.map{|key, value|
+          {term: {key => value}}
+        }
+      end
 
       if report.lat and report.lon
         sort do
