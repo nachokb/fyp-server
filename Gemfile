@@ -36,6 +36,8 @@ gem 'tire'
 # Apple Push Notifications
 gem 'houston'
 
+gem 'byebug'
+
 gem 'state_machine', :require => 'state_machine/core'
 
 # Use ActiveModel has_secure_password
