@@ -12,3 +12,11 @@ When someone reports a seen or found pet that matches the description of your lo
 When you enter the mobile app it will show you the list of pets that are lost and reported last seen in that area.
 
 
+### API Endpoints
+
+GET /reports # shows all reports, probably sorted or filteres by geolocation
+POST /reports # hey, I've lost a pet
+GET /reports/XYZ/candidates # shows sightings which our super AI thinks might match report XYZ
+GET /sightings # shows all sightings, probably sorted or filtered by geolocation
+POST /sightings # hey, I've found a Philosoraptor!
+GET /sightings/ZYX/candidates # shows reports which our super AI thinks might match sighting ZYX
