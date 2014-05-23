@@ -10,12 +10,10 @@ class SightingsController < ApplicationController
   def create
     @sighting = Sighting.new(sighting_params)
 
-    respond_to do |format|
-      if @sighting.save
-        format.json { render json: { id: @sighting.id }, status: :created }
-      else
-        format.json { render json: { errors: @sighting.errors }, status: :unprocessable_entity }
-      end
+    if @sighting.save
+      render json: { id: @sighting.id }, status: :created
+    else
+      render json: { errors: @sighting.errors }, status: :unprocessable_entity
     end
   end
 
@@ -38,6 +36,6 @@ class SightingsController < ApplicationController
     params.permit(:species, :race)
   end
   def sighting_params
-    params.require(:sighting).permit(:name, :lat, :lon, :email, :species, :race, :color, :description, :size, :age, :sex) # TODO add picture
+    params.require(:sighting).permit(:name, :lat, :lon, :email, :species, :race, :color, :description, :size, :age, :sex, :picture)
   end
 end

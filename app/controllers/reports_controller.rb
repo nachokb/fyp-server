@@ -10,17 +10,14 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
 
-    respond_to do |format|
-      if @report.save
-        format.json { render json: { id: @report.id }, status: :created }
-      else
-        format.json { render json: { errors: @report.errors }, status: :unprocessable_entity }
-      end
+    if @report.save
+      render json: { id: @report.id }, status: :created
+    else
+      render json: { errors: @report.errors }, status: :unprocessable_entity
     end
   end
 
   def candidates
-    # debugger
     @report = Report.find(params[:report_id])
     render json: @report.candidates # TBD format # TODO page number
   end
@@ -38,6 +35,6 @@ class ReportsController < ApplicationController
     params.permit(:species, :race)
   end
   def report_params
-    params.require(:report).permit(:name, :lat, :lon, :email, :species, :race, :color, :description, :size, :age, :sex) # TODO add picture
+    params.require(:report).permit(:name, :lat, :lon, :email, :species, :race, :color, :description, :size, :age, :sex, :picture)
   end
 end
