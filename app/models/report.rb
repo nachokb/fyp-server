@@ -68,7 +68,7 @@ class Report < ActiveRecord::Base
       end
     end
 
-    reports.as_json(except: [:_type, :_index, :_version, :_explanation])
+    reports.as_json(except: [:_type, :_index, :_version, :_explanation, :_score, :sort, :highlight])
   end
 
   def candidates page = 1
@@ -96,6 +96,6 @@ class Report < ActiveRecord::Base
       end
     end
 
-    sightings.as_json(except: [:_type, :_index, :_version, :_explanation])
+    sightings.as_json(except: [:_type, :_index, :_version, :_explanation, :_score, :sort, :highlight])
   end
 end

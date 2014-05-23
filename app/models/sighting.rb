@@ -48,7 +48,7 @@ class Sighting < ActiveRecord::Base
   end
 
   def self.search_all location, filters, page = 1
-    reports = Sighting.search do
+    sightings = Sighting.search do
       from (page - 1) * PER_PAGE
       size PER_PAGE
 
@@ -67,7 +67,7 @@ class Sighting < ActiveRecord::Base
       end
     end
 
-    reports.as_json(except: [:_type, :_index, :_version, :_explanation])
+    sightings.as_json(except: [:_type, :_index, :_version, :_explanation, :_score, :sort, :highlight])
   end
 
   def candidates page = 1
@@ -95,6 +95,6 @@ class Sighting < ActiveRecord::Base
       end
     end
 
-    reports.as_json(except: [:_type, :_index, :_version, :_explanation])
+    reports.as_json(except: [:_type, :_index, :_version, :_explanation, :_score, :sort, :highlight])
   end
 end
