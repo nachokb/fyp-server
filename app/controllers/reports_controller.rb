@@ -9,16 +9,21 @@ class ReportsController < ApplicationController
   # POST /pruebas
   # POST /pruebas.json
   def create
-    debugger
     @report = Report.new(report_params)
 
     respond_to do |format|
       if @report.save
-        format.json { render json: { }, status: :created }
+        format.json { render json: { id: @report.id }, status: :created }
       else
         format.json { render json: { errors: @report.errors }, status: :unprocessable_entity }
       end
     end
+  end
+
+  def candidates
+    debugger
+    @report = Report.find(params[:report_id])
+    render json: @report.candidates
   end
 
   private
