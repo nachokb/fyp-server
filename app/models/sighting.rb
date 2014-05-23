@@ -9,6 +9,9 @@ class Sighting < ActiveRecord::Base
     bucket: 'inakathoon-kiss',
     default_url: "http://inakathoon-kiss.s3.amazonaws.com/IMG_20140518_182234.jpg"
 
+  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
+
+
   PER_PAGE = 20
 
   mapping do
