@@ -14,7 +14,6 @@ class Report < ActiveRecord::Base
 
   mapping do
     indexes :id,                 type: 'integer'
-    indexes :report_id,          type: 'string'
     indexes :geo_point,          type: 'geo_point'
     indexes :email,              type: 'string'
     indexes :description,        type: 'string'
@@ -33,7 +32,6 @@ class Report < ActiveRecord::Base
   def to_indexed_json
     { 
       id: id,
-      report_id: report_id,
       geo_point: {
         lat: lat,
         lon: lon
@@ -75,27 +73,28 @@ class Report < ActiveRecord::Base
   end
 
   def candidates page = 1
-    location = {lat: lat, lon: lon} if lat and lon
-    filter_keys = Hash[*%w([name species race size color age sex).map {|msg| [msg, r.send(msg)] }.flatten]
+    report = self
+    filters = Hash[*%w(name species race size color age sex).map {|msg| 
+      report.send(msg).present? ? ([msg, report.send(msg)]) : nil 
+    }.compact.flatten]
 
-    sighting = Sighting.search do
+    sightings = Sighting.search do
       from (page - 1) * PER_PAGE
       size PER_PAGE
 
-      filter 'and', filters.map{|key, value|
+      filter 'or', filters.map{|key, value|
         {term: {key => value}}
       }
 
-      if location
+      if report.lat and report.lon
         sort do
-          by :_geo_distance, geo_point: [location[:lon].to_f, location[:lat].to_f], order: 'asc', unit: 'meters'
+          by :_geo_distance, geo_point: [report.lon, report.lat], order: 'asc'
         end
       else
         sort {by :created_at, 'desc'}
       end
     end
 
-    reports.as_json(except: [:_type, :_index, :_version, :_explanation])
-
+    sightings.as_json(except: [:_type, :_index, :_version, :_explanation])
   end
 end
