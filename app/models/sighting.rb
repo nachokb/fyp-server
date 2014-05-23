@@ -14,18 +14,18 @@ class Sighting < ActiveRecord::Base
   mapping do
     indexes :id,                 type: 'integer'
     indexes :geo_point,          type: 'geo_point'
-    indexes :email,              type: 'string'
-    indexes :description,        type: 'string'
-    indexes :species,            type: 'string'
-    indexes :race,               type: 'string'
-    indexes :size,               type: 'string'
-    indexes :color,              type: 'string'
-    indexes :age,                type: 'string'
-    indexes :sex,                type: 'string'
-    indexes :image,              type: 'string'
+    indexes :email,              type: 'string', index: :not_analyzed
+    indexes :description,        type: 'string', index: :not_analyzed
+    indexes :species,            type: 'string', index: :not_analyzed
+    indexes :race,               type: 'string', index: :not_analyzed
+    indexes :size,               type: 'string', index: :not_analyzed
+    indexes :color,              type: 'string', index: :not_analyzed
+    indexes :age,                type: 'string', index: :not_analyzed
+    indexes :sex,                type: 'string', index: :not_analyzed
+    indexes :image,              type: 'string', index: :not_analyzed
     indexes :created_at,         type: 'date'
-    indexes :status,             type: 'string'
-    indexes :name,               type: 'string'
+    indexes :status,             type: 'string', index: :not_analyzed
+    indexes :name,               type: 'string', index: :not_analyzed
   end
 
   def to_indexed_json
