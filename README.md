@@ -13,6 +13,7 @@ When you enter the mobile app it will show you the list of pets that are lost an
 
 
 ### API Endpoints
+http://find-your-pet.herokuapp.com/
 
 GET /reports # shows all reports, probably sorted or filteres by geolocation
 POST /reports # hey, I've lost a pet
