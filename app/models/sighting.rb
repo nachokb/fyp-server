@@ -26,6 +26,7 @@ class Sighting < ActiveRecord::Base
     indexes :created_at,         type: 'date'
     indexes :status,             type: 'string', index: :not_analyzed
     indexes :name,               type: 'string', index: :not_analyzed
+    indexes :type,               type: 'string', index: :not_analyzed
   end
 
   def to_indexed_json
@@ -43,7 +44,8 @@ class Sighting < ActiveRecord::Base
       image: picture.url,
       created_at: created_at,
       status: status,
-      name: name
+      name: name,
+      type: "sighting"
     }.merge(geo_point).to_json
   end
 
