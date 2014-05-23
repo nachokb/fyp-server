@@ -25,6 +25,11 @@ class SightingsController < ApplicationController
     render json: @sighting.candidates # TBD format # TODO page number
   end
 
+  def show
+    @sighting = Sighting.find(params[:id])
+    render json: @sighting
+  end
+
   private
   def location_params
     params.permit(:lat, :lon)
