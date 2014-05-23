@@ -3,7 +3,7 @@ class SightingsController < ApplicationController
   def index
     # location_params should be nil if there's no geo
     # filter_params should be {} if there's no criteria
-    Sighting.search_all(location_params, {}) # TODO third argument page number
+    render json: Sighting.search_all(location_params, {}) # TODO third argument page number
   end
 
   # POST /sightings.json
