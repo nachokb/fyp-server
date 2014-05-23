@@ -35,6 +35,8 @@ gem 'tire'
 # Apple Push Notifications
 gem 'houston'
 
+gem 'state_machine', :require => 'state_machine/core'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
