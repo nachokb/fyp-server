@@ -7,7 +7,7 @@ class Sighting < ActiveRecord::Base
   has_attached_file :picture, 
     s3_credentials: Rails.root + '/config/s3.yml',
     bucket: 'inakathoon-kiss',
-    default_url: "/images/missing.png"
+    default_url: "http://inakathoon-kiss.s3.amazonaws.com/IMG_20140518_182234.jpg"
 
   PER_PAGE = 20
 

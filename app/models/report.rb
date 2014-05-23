@@ -7,8 +7,9 @@ class Report < ActiveRecord::Base
   has_attached_file :picture, 
     s3_credentials: Rails.root + '/config/s3.yml',
     bucket: 'inakathoon-kiss',
-    default_url: "/images/missing.png"
-  # validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+    default_url: "http://inakathoon-kiss.s3.amazonaws.com/IMG_20140518_182234.jpg"
+
+  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
 
   PER_PAGE = 20
 
