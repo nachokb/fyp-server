@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523152327) do
+ActiveRecord::Schema.define(version: 20140523154159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "reports", force: true do |t|
     t.float    "lat"
-    t.float    "long"
     t.string   "email"
     t.string   "description"
     t.string   "species"
@@ -34,11 +33,11 @@ ActiveRecord::Schema.define(version: 20140523152327) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "status"
+    t.float    "lon"
   end
 
   create_table "sightings", force: true do |t|
     t.float    "lat"
-    t.float    "long"
     t.string   "email"
     t.string   "description"
     t.string   "species"
@@ -55,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140523152327) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "status"
+    t.float    "lon"
   end
 
 end
