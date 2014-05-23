@@ -26,7 +26,15 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+# File Uploads
 gem "paperclip", "~> 4.1"
+
+# ElasticSearch integration
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+
+# Apple Push Notifications
+gem 'houston'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
