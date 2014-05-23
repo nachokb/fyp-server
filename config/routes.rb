@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :reports do
-    resources :candidates # TODO map correctly
+    get :candidates
+    # resources :candidates # TODO map correctly
   end
   resources :sightings
   get 'choices' => 'choices#index'
