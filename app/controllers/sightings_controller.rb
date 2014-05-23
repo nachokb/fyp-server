@@ -21,7 +21,7 @@ class SightingsController < ApplicationController
 
   def candidates
     # debugger
-    @sighting = Report.find(params[:sighting_id])
+    @sighting = Sighting.find(params[:sighting_id])
     render json: @sighting.candidates # TBD format # TODO page number
   end
 
@@ -32,7 +32,7 @@ class SightingsController < ApplicationController
   def filter_params
     params.permit(:species, :race)
   end
-  def report_params
+  def sighting_params
     params.require(:sighting).permit(:name, :lat, :lon, :email, :species, :race, :color, :description, :size, :age, :sex) # TODO add picture
   end
 end
