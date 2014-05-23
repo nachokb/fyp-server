@@ -28,6 +28,7 @@ gem 'spring',        group: :development
 
 # File Uploads
 gem "paperclip", "~> 4.1"
+gem 'aws-sdk', '~> 1.5.7'
 
 # ElasticSearch integration
 gem 'tire'
