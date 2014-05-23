@@ -25,6 +25,11 @@ class ReportsController < ApplicationController
     render json: @report.candidates # TBD format # TODO page number
   end
 
+  def show
+    @report = Report.find(params[:id])
+    render json: @report
+  end
+
   private
   def location_params
     params.permit(:lat, :lon)
