@@ -1,13 +1,12 @@
 class ReportsController < ApplicationController
 
   def index
-    # sort_params should be nil if there's no geo
+    # location_params should be nil if there's no geo
     # filter_params should be {} if there's no criteria
-    Report.search_all(location_params, {})
+    Report.search_all(location_params, {}) # TODO third argument page number
   end
 
-  # POST /pruebas
-  # POST /pruebas.json
+  # POST /reports.json
   def create
     @report = Report.new(report_params)
 
@@ -21,9 +20,9 @@ class ReportsController < ApplicationController
   end
 
   def candidates
-    debugger
+    # debugger
     @report = Report.find(params[:report_id])
-    render json: @report.candidates
+    render json: @report.candidates # TBD format # TODO page number
   end
 
   private
