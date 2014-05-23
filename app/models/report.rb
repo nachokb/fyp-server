@@ -30,12 +30,9 @@ class Report < ActiveRecord::Base
   end
 
   def to_indexed_json
+    geo_point = lat && lon ? {geo_point: {lat: lat, lon: lon}} : {}
     { 
       id: id,
-      geo_point: {
-        lat: lat,
-        lon: lon
-      },
       email: email,
       description: description,
       species: species,
@@ -48,7 +45,7 @@ class Report < ActiveRecord::Base
       created_at: created_at,
       status: status,
       name: name
-    }.to_json
+    }.merge(geo_point).to_json
   end
 
   def self.search_all location, filters, page = 1
